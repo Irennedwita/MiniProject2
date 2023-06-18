@@ -1,0 +1,109 @@
+body {
+    background-color: #dfdfe1;
+}
+
+header{
+    background-color: #c5afb1;
+    padding: 10px 0px;
+    margin: 50px auto;
+    border: dashed 5px #dfdfe1;
+    position: sticky;
+    top: 0;
+}
+
+h1{
+    text-align: center;
+    font-size: 45px;
+    color: white;
+    font-weight: bold;
+}
+
+main table, main th, main tr, main td{
+    border: 1px solid;
+    border-color: #9a7e8b;
+    border-collapse: collapse;
+    text-align: left;
+    vertical-align: top;
+    font-size: 25px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main table{
+    width: 1260px;
+    height: 900px;
+    background-color: #e3cfd0;
+}
+
+main table tr {
+    height: 180px;
+}
+main table tr td {
+    width: 180px;
+}
+
+.hari{
+    height: 50px;
+}
+
+main table th{
+    text-align: center;
+    background-color: #b8999f;
+}
+
+.bulanlain{
+    background-color: #bdabad;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+.menu{
+    height: 50px;
+    position: absolute;
+    top: 40px;
+    left: 25px;
+}
+
+.search{
+    height: 50px;
+    position: absolute;
+    top: 40px;
+    right: 25px; 
+}
+
+.setting{
+    height: 50px;
+    position: absolute;
+    top: 40px;
+    right: 100px; 
+}
+
+footer{
+    height: 45px;
+    background-color: #c5afb1;
+    padding: 10px 5px;
+    margin: 50px auto;
+    border: dashed 5px #dfdfe1;
+
+    text-align: center;
+    color: white;
+    font-size: 26pt;
+}
+
+footer img {
+    height: 40px;
+    float: left;
+}
+
+footer img:nth-child(2) {
+    float: right;
+}
+
+mark{
+    background-color: #b8999f;
+    border-radius: 50%;
+    padding: 10px;
+}
