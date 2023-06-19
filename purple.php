@@ -9,6 +9,8 @@ if (isset($_POST['logout'])) {
     header('location:purple-login.php');
 }
 
+$email = $_SESSION["email"];
+
 $conn = mysqli_connect('localhost','root','','purple_calendar');
 
 $email = $_SESSION['email'];
@@ -60,7 +62,7 @@ $result = mysqli_query($conn, $sql);
                     while($row = $result -> fetch_assoc()){ ?>
                         <ul>
                             <li>
-                                <a href="detail.php">
+                                <a href="purple-detail.php?id=<?php echo $row['id']?>">
                                     <?php
                                         echo $row["tgl_mulai"]." ";
                                         echo $row["nama"];
