@@ -70,9 +70,9 @@ aside {
 }
 
 aside img {
-    margin: 50px auto;
+    margin-top: 75px;
     width: 300px;
-    height: 425px;
+    height: auto;
 }
 
 footer{
@@ -95,4 +95,9 @@ footer a img{
 
 footer a:nth-child(2) {
     float: right;
+}
+
+a.hapus {
+    margin-left: 400px;
+    text-align: center;
 }

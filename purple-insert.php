@@ -1,4 +1,5 @@
 <?php
+    // $_SESSION['email'] = 'irenne@gmail.com';
     session_start();
     if(!isset($_SESSION['email'])) {
         header("Location: purple-login.php");
@@ -12,35 +13,51 @@
 
     $email = $_SESSION["email"];
 
-    if (isset($_POST['submit'])) {
+    if ($_POST) {
         $nama = $_POST["nama"];
         $tglMulai = $_POST["tgl_mulai"];
         $tglSelesai = $_POST["tgl_selesai"];
         $level = $_POST["level_penting"];
         $durasi = $_POST["durasi"];
         $lokasi = $_POST["lokasi"];
+        $gambar = $_FILES['gambar']['name'];
 
-        if(isset($_FILES['gambar']['name'])){
-            $uploadfile = "img/".$_FILES["gambar"]['name'];
+        if($gambar!=""){
+            $uploadfile = "images/".$_FILES["gambar"]['name'];
             $tipefile = strtolower(pathinfo($uploadfile,PATHINFO_EXTENSION));
 
             if($tipefile != "jpg" && $tipefile != "png" && $tipefile != "jpeg") {
                 echo "<h3>Hanya bisa JPG,PNG, dan JPEG</h3>";	
             }
             else {
-                if(move_uploaded_file($_FILES['gambar']['tmp_name'],$uploadfile)){
-                    $sql = "INSERT INTO kegiatan (nama, tgl_mulai, tgl_selesai, level_penting, durasi, lokasi, gambar)
+                if(move_uploaded_file($_FILES['gambar']['tmp_name'], $uploadfile)){
+                    $sql = "INSERT INTO kegiatan (nama, tgl_mulai, tgl_selesai, level_penting, durasi, lokasi, gambar, id_user)
                     VALUES ('".$nama."', '".$tglMulai."', '".$tglSelesai."', '".$level."', '".$durasi."', '".$lokasi."', '".$uploadfile."',
-                    (SELECT id FROM user WHERE email'".$email."'))";
+                    (SELECT id FROM user WHERE email='".$email."'))";
     
                     if (mysqli_query($conn, $sql)) {
                         echo "<h3>Berhasil Menambahkan Kegiatan</h3>";
-                        header("Location: purple.php");
+                        // header("Location: purple.php");
                     } else {
                         echo "<h3>Gagal Menambahkan Kegiatan</h3>";
-                        header("Location: purple-insert.php");
+                        // header("Location: purple-insert.php");
                     }
                 }
+            }
+        }
+        else {
+            $sql = "INSERT INTO kegiatan (nama, tgl_mulai, tgl_selesai, level_penting, durasi, lokasi, id_user)
+                    VALUES ('".$nama."', '".$tglMulai."', '".$tglSelesai."', '".$level."', '".$durasi."', '".$lokasi."',
+                    (SELECT id FROM user WHERE email='".$email."'))";
+
+            // var_dump($sql);
+    
+            if (mysqli_query($conn, $sql)) {
+                echo "<h3>Berhasil Menambahkan Kegiatan</h3>";
+                // header("Location: purple.php");
+            } else {
+                echo "<h3>Gagal Menambahkan Kegiatan</h3>";
+                // header("Location: purple-insert.php");
             }
         }
     }
@@ -61,7 +78,7 @@
     <a href="purple.php">
         << Home</a>
 
-    <form action="insert.php" method="post" name="formTambah" enctype="multipart/form-data">
+    <form action="purple-insert.php" method="post" name="formTambah" enctype="multipart/form-data">
         <table>
             <tr>
                 <td colspan="3"><h2>Insert Kegiatan</h2></td>
