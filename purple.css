@@ -9,6 +9,20 @@ header{
     position: sticky;
     top: 0;
 }
+
+/* footer{
+    height: 30px;
+    background-color: #c5afb1;
+    padding-top: 10px;
+    margin: 50px auto;
+    border: dashed 5px #dfdfe1;
+
+    text-align: center;
+    color: white;
+    font-size: 12pt;
+} */
+
+
 table {
     /* background-color: #e3cfd0; */
     /* border: 1px solid; */
@@ -112,14 +126,28 @@ h1{
     left: 100px; 
 }
 
-footer{
-    padding: 10px 10px 0px 10px;
-    bottom: 1000;
-    width: 100%;
-    height: 30px;
-    background: #c5afb1;
-    border: dashed 5px #dfdfe1;
+.detailKegiatan{
+    background-color: #b8999f;
+    width: 420px;
+    height: 360px;
+    position: absolute;
+    top: 470px;
+    right: 200px;
+    border-radius: 15px;
+}
+
+.judul{
+    background-color: #e3cfd0;
     text-align: center;
-    color: white;
-    font-size: 12pt;
+    font-size: 16pt;
+    height: 50px;
+    padding-top: 15px;
+    color: #b8999f;
+    font-weight: bolder;
+    border-radius: 15px 15px 0px 0px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
 }

@@ -11,9 +11,9 @@ if (isset($_POST['logout'])) {
 
 $conn = mysqli_connect('localhost','root','','purple_calendar');
 
-// $email = $_SESSION['email'];
-// $sql = "SELECT * FROM kegiatan WHERE tgl_mulai > '2023-05-' ORDER BY tgl_mulai;"
-// $result = mysqli_query($conn, $sql);
+$email = $_SESSION['email'];
+$sql = "SELECT * FROM kegiatan WHERE tgl_mulai > '2023-05-01' ORDER BY tgl_mulai";
+$result = mysqli_query($conn, $sql);
 
 ?>
 <!DOCTYPE html>
@@ -53,13 +53,30 @@ $conn = mysqli_connect('localhost','root','','purple_calendar');
         <h2 id="current-month"></h2>
     </div>
     <div id="calendar"></div>
-    <!-- <div id="detailKegiatan">
-        <div class="events">My Events</div>
-        <ul>
-            <li>
-            </li>
-        </ul>
-    </div> -->
+    <div class="detailKegiatan">
+        <div class="judul">Kegiatan Bulan Ini</div>
+            <?php
+                if($result->num_rows > 0){
+                    while($row = $result -> fetch_assoc()){ ?>
+                        <ul>
+                            <li>
+                                <a href="detail.php">
+                                    <?php
+                                        echo $row["tgl_mulai"]." ";
+                                        echo $row["nama"];
+                                        echo "<br>";
+                                    ?>
+                                </a>
+                            </li>
+                        </ul>
+            <?php            
+                    }
+                }else{
+                    echo "No Data Found";
+                }
+            ?>
+    </div>
+            
     <?php
     if(isset ($_GET['action'])){
         $date = str_replace(")","",(str_replace("(","",(str_replace("'","",$_GET['date']))))); 
@@ -117,7 +134,7 @@ $conn = mysqli_connect('localhost','root','','purple_calendar');
                 }
                 
                 // ngelink ke form kinan yg add dan update
-                rowHTML += '><a href="calendar.php?action=kegiatan&date=(\'' + day + '/' + (month + 1) + '/' + year + '\')">' + day + '</a></td>';
+                rowHTML += '><a href="purple-insert.php?action=kegiatan&date=(\'' + day + '/' + (month + 1) + '/' + year + '\')">' + day + '</a></td>';
                 if (startDate.getDay() === 6) {
                     calendarHTML += rowHTML + '</tr>';
                     if (dayCount < endDate.getDate()) {
@@ -168,8 +185,8 @@ $conn = mysqli_connect('localhost','root','','purple_calendar');
         var currentMonthElement = document.getElementById('current-month');
         currentMonthElement.textContent = now.toLocaleString('default', { month: 'long' }) + ' ' + now.getFullYear();
     </script>
-    <footer>
+    <!-- <footer>
         &#169; UAS Praktikum ProgWeb Kelompok 3
-    </footer>
+    </footer> -->
 </body>
 </html>
